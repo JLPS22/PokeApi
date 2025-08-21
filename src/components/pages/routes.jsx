@@ -7,9 +7,9 @@ export const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path='/' element={<Posts />} />
-                <Route exact path='/:id' element={<Post />} />
-                <Route exact path='/type/:id' element={<PostsType />} />
+                <Route exact path='/PokeApi/' element={<Posts />} />
+                <Route exact path='/PokeApi/:id' element={<Post />} />
+                <Route exact path='/PokeApi/type/:id' element={<PostsType />} />
             </Routes>
         </BrowserRouter>
     )

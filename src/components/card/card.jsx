@@ -1,10 +1,17 @@
 import { usePokemon } from "../pokemon/pokemon"
 import { Link, useParams } from "react-router-dom"
 import './card.css'
+import { StyleType } from "../cardList"
 
 export const Card = () => {
     const { id } = useParams()
     const { data, isLoading } = usePokemon(`https://pokeapi.co/api/v2/pokemon/${id}`)
+
+    let url_back = '/PokeApi/'
+
+    if(sessionStorage.getItem('Filter') == 'yes'){
+        url_back = `/PokeApi/type/${sessionStorage.getItem('Id')}`
+    }
 
     if (isLoading) { return <h1 className="load">Loading... ⌛️</h1> }
 
@@ -42,14 +49,18 @@ export const Card = () => {
                     <div className="info-block">
                         <h3>Pokémon Type</h3>
                         <ul>
-                            {data.types.map((type, i) => (
-                                <li key={i}>{type.type.name}</li>
-                            ))}
+                            <StyleType>
+                                {data.types.map((type, i) => (
+                                    <StyleType status={type.type.name}>
+                                        <p>{type.type.name}</p>
+                                    </StyleType>
+                                ))}
+                            </StyleType>
                         </ul>
                     </div>
                 </div>
             </div>
-            <Link className="btn-back" to='/'>Return Home</Link>
+            <Link className="btn-back" to={url_back}>Return Home</Link>
         </div>
     )
 }

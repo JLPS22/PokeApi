@@ -11,9 +11,10 @@ export const usePokemonList = (url) => {
                 const data = await res.json();
 
                 return {
+                    id: data.id,
                     name: name,
                     img: data.sprites.front_default,
-                    id: data.id
+                    type: data.types
                 };
             })
         );
@@ -50,7 +51,7 @@ export const usePokemon = (url) => {
 
                 return {
                     name: ability.name,
-                    description: entry?.short_effect || 'Descrição não encontrada.'
+                    description: entry?.short_effect || 'Description not found.'
                 }
             })
         )
@@ -83,9 +84,10 @@ export const useTypePokemon = (url) => {
                 const data = await res.json()
 
                 return {
-                    name: data.name,
                     id: data.id,
-                    img: data.sprites.front_default
+                    name: data.name,
+                    img: data.sprites.front_default,
+                    type: data.types
                 }
             })
         )

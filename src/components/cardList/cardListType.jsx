@@ -1,10 +1,14 @@
 import { useTypePokemon } from "../pokemon/pokemon"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { ThemeToggleButton } from "../theme-toggler-button/theme-toggler-button"
+import { StyleType } from "."
 
 export const CardListType = () => {
     const navigate = useNavigate()
     const { id } = useParams()
+
+    sessionStorage.setItem('Id', id)
+    sessionStorage.setItem('Filter', 'yes')
 
     try {
         const { data, isLoading } = useTypePokemon(`https://pokeapi.co/api/v2/type/${id}`)
@@ -18,17 +22,22 @@ export const CardListType = () => {
                 <div className="search">
                     <ThemeToggleButton />
                     |
-                    <button onClick={() => { navigate('/') }}>Retornar</button>
+                    <button onClick={() => { navigate('/PokeApi/') }}>Retornar</button>
                 </div>
                 <div className="pokemon-container">
                     {data.pokemon.map((pokemons) => (
                         <div className='pokemon-card'>
-                            <Link to={`/${pokemons.id}`}>
-                                <div>
-                                    <img src={pokemons.img} alt='Pokemon Image' />
-                                </div>
+                            <Link to={`/PokeApi/${pokemons.id}`}>
                                 <div className="name-pokemon">
+                                    <img src={pokemons.img} alt='Pokemon Image' />
                                     <h2>{pokemons.name}</h2>
+                                    <StyleType>
+                                        {pokemons.type.map((type) => (
+                                            <StyleType status={type.type.name}>
+                                                <p>{type.type.name}</p>
+                                            </StyleType>
+                                        ))}
+                                    </StyleType>
                                 </div>
                             </Link>
                         </div>
@@ -40,7 +49,7 @@ export const CardListType = () => {
         return (
             <div className="div-err">
                 <h1 className="err">Pokémon Of The Type "{id}" Was Not Found ⚠️</h1>
-                <button className="btn" onClick={() => { navigate('/') }}>Retornar</button>
+                <button className="btn" onClick={() => { navigate('/PokeApi/') }}>Retornar</button>
             </div>
         )
     }

@@ -23,6 +23,7 @@ a {
     text-decoration: none;
     color: inherit;
     display: flex;
+    padding: 0px;
 }
 
 .tittle {
@@ -78,9 +79,7 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    gap: 60px;
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     color: var(--text-color);
@@ -88,8 +87,11 @@ a {
 
 .pokemon-card {
     display: flex;
-    padding: 20px;
-    width: calc(33.33% - 40px);
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 183px;
+    height: 206px;
     box-sizing: border-box;
     border: 2px solid #646cff;
     border-radius: 10px;
@@ -105,9 +107,21 @@ a {
 }
 
 .name-pokemon {
+    padding: 0px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.name-pokemon img {
+    padding: 0px;
+    height: 110px;
+}
+
+.name-pokemon h2 {
+    padding: 0px;
+    font-size: 16px;
     text-transform: uppercase;
 }
 
