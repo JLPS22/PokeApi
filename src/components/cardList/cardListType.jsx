@@ -1,7 +1,7 @@
 import { useTypePokemon } from "../pokemon/pokemon"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { ThemeToggleButton } from "../theme-toggler-button/theme-toggler-button"
-import { StyleType } from "."
+import { H1Load ,DivErr, DivSearch, DivTittle, H1Err, LinkStyle, PokeCard, PokeContainer, PokeName, StyleType, Button } from "../styled-components"
 
 export const CardListType = () => {
     const navigate = useNavigate()
@@ -12,23 +12,25 @@ export const CardListType = () => {
 
     try {
         const { data, isLoading } = useTypePokemon(`https://pokeapi.co/api/v2/type/${id}`)
-        if (isLoading) { return <h1 className="load">Loading... ⌛️</h1> }
+        if (isLoading) { return <H1Load>Loading... ⌛️</H1Load> }
 
         return (
             <>
-                <div className="tittle">
+                <DivTittle>
                     <h1>POKE LIST</h1>
-                </div>
-                <div className="search">
+                </DivTittle>
+
+                <DivSearch>
                     <ThemeToggleButton />
                     |
                     <button onClick={() => { navigate('/PokeApi/') }}>Retornar</button>
-                </div>
-                <div className="pokemon-container">
+                </DivSearch>
+                
+                <PokeContainer>
                     {data.pokemon.map((pokemons) => (
-                        <div className='pokemon-card'>
-                            <Link to={`/PokeApi/${pokemons.id}`}>
-                                <div className="name-pokemon">
+                        <PokeCard>
+                            <LinkStyle to={`/PokeApi/${pokemons.id}`}>
+                                <PokeName>
                                     <img src={pokemons.img} alt='Pokemon Image' />
                                     <h2>{pokemons.name}</h2>
                                     <StyleType>
@@ -38,19 +40,20 @@ export const CardListType = () => {
                                             </StyleType>
                                         ))}
                                     </StyleType>
-                                </div>
-                            </Link>
-                        </div>
+                                </PokeName>
+                            </LinkStyle>
+                        </PokeCard>
                     ))}
-                </div>
+                </PokeContainer>
             </>
         )
     } catch (err) {
+        console.log(err)
         return (
-            <div className="div-err">
-                <h1 className="err">Pokémon Of The Type "{id}" Was Not Found ⚠️</h1>
-                <button className="btn" onClick={() => { navigate('/PokeApi/') }}>Retornar</button>
-            </div>
+            <DivErr>
+                <H1Err>Pokémon Of The Type "{id}" Was Not Found ⚠️</H1Err>
+                <Button onClick={() => { navigate('/PokeApi/') }}>Retornar</Button>
+            </DivErr>
         )
     }
 }

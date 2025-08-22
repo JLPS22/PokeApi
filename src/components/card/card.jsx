@@ -1,7 +1,7 @@
 import { usePokemon } from "../pokemon/pokemon"
-import { Link, useParams } from "react-router-dom"
-import './card.css'
-import { StyleType } from "../cardList"
+import { useParams } from "react-router-dom"
+import { LinkStyle, StyleType } from "../styled-components"
+import { DivCard, DivContainer } from "./style-card"
 
 export const Card = () => {
     const { id } = useParams()
@@ -16,8 +16,9 @@ export const Card = () => {
     if (isLoading) { return <h1 className="load">Loading... ⌛️</h1> }
 
     return (
-        <div className="container">
-            <div className="card">
+        <DivContainer>
+            <DivCard>
+
                 <div>
                     <img src={data.sprites.front_default} alt="Pokemon Image" />
                 </div>
@@ -36,10 +37,10 @@ export const Card = () => {
                         <h3>List of Skills</h3>
                         <ul>
                             {data.abilities.map((ability, i) => (
-                                <li key={i}>
+                                <li className="ability">
                                     {ability.name}
                                     <ul>
-                                        <li className="description">→ {ability.description}</li>
+                                        <li>→ {ability.description}</li>
                                     </ul>
                                 </li>
                             ))}
@@ -59,8 +60,9 @@ export const Card = () => {
                         </ul>
                     </div>
                 </div>
-            </div>
-            <Link className="btn-back" to={url_back}>Return Home</Link>
-        </div>
+            </DivCard>
+            
+            <LinkStyle to={url_back}>Return Home</LinkStyle>
+        </DivContainer>
     )
 }
