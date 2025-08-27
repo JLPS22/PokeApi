@@ -54,7 +54,8 @@ export const DivSearch = styled.div`
     justify-content: center;
     margin-bottom: 25px;
 
-    input[type="text"] {
+    select {
+        cursor: pointer;
         margin: 0 10px 0 10px;
         border: 2px solid #646cff;
         border-radius: 10px;
@@ -62,13 +63,12 @@ export const DivSearch = styled.div`
         font-size: 14px;
         transition: 0.5s ease;
         background-color: var(--bg-color);
-        color: var(--text-search-inp);
+        color: var(--text-color);
     }
 
-    input[type="text"]:focus {
+    select:hover {
         outline: none;
         background-color: var(--bg-search-inp);
-        color: var(--text-search-inp);
     }
 
     button {

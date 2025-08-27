@@ -1,6 +1,6 @@
 import { usePokemon } from "../pokemon/pokemon"
 import { useParams } from "react-router-dom"
-import { LinkStyle, StyleType } from "../styled-components"
+import { H1Load, LinkStyle, StyleType } from "../styled-components"
 import { DivCard, DivContainer } from "./style-card"
 
 export const Card = () => {
@@ -13,7 +13,7 @@ export const Card = () => {
         url_back = `/PokeApi/type/${sessionStorage.getItem('Id')}`
     }
 
-    if (isLoading) { return <h1 className="load">Loading... ⌛️</h1> }
+    if (isLoading) { return <H1Load>Loading... ⌛️</H1Load> }
 
     return (
         <DivContainer>

@@ -6,15 +6,14 @@ import { StyleType, DivTittle, DivSearch, PokeContainer, PokeCard, PokeName, Div
 
 export const CardList = () => {
     const navigate = useNavigate()
-    const [countPoke, setCountPoke] = useState(10)
+    const [ countPoke, setCountPoke ] = useState(10)
+    const [ type, setType ] = useState()
     const { data, isLoading } = usePokemonList(`https://pokeapi.co/api/v2/pokemon?limit=${countPoke}`)
     sessionStorage.setItem('Filter', 'no')
 
     const btn_filter = () => {
-        const type = document.getElementById("poke-type").value
-
-        if (!type || type[0] === ' ') {
-            alert("Write The Pokémon Type Before! \nWithout Spaces Before The Word!")
+        if (type == undefined) {
+            alert("Select the Pokémon type first!")
         } else {
             navigate(`/PokeApi/type/${type}`)
         }
@@ -29,7 +28,27 @@ export const CardList = () => {
             </DivTittle>
     
             <DivSearch>
-                <input type="text" placeholder="Filter by Pokemon type" id="poke-type" />
+                <select id="type" value={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="">-- Selecione --</option>
+                    <option value="normal">Normal ⚪</option>
+                    <option value="fighting">Fighting 🥊</option>
+                    <option value="flying">Flying ☁️</option>
+                    <option value="poison">Poison ☣</option>
+                    <option value="ground">Ground 🌍</option>
+                    <option value="rock">Rock ⛰️</option>
+                    <option value="bug">Bug 🦗</option>
+                    <option value="ghost">Ghost 👻</option>
+                    <option value="steel">Steel 🔩</option>
+                    <option value="fire">Fire 🔥</option>
+                    <option value="water">Water 💧</option>
+                    <option value="grass">Grass 🍀</option>
+                    <option value="electric">Electric ⚡</option>
+                    <option value="psychic">Psychic 🔮</option>
+                    <option value="ice">Ice 🧊</option>
+                    <option value="dragon">Dragon 🐲</option>
+                    <option value="dark">Dark 🌑</option>
+                    <option value="fairy">Fairy ✨</option>
+                </select>
                 <button onClick={btn_filter}>Filter 🔍</button>
                 |
                 <ThemeToggleButton />

@@ -35,6 +35,39 @@ export const usePokemonList = (url) => {
     return { data, isLoading }
 }
 
+
+export const useTypePokemon = (url) => {
+    const PokeFetch = async () => {
+
+        const res = await fetch(url)
+        const data = await res.json()
+
+        const dataPokemons = await Promise.all(
+            data.pokemon.map(async (poke) => {
+                const res = await fetch(poke.pokemon.url)
+                const data = await res.json()
+
+                return {
+                    id: data.id,
+                    name: data.name,
+                    img: data.sprites.front_default,
+                    type: data.types
+                }
+            })
+        )
+
+        return { pokemon: dataPokemons }
+    }
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['pokemon', url],
+        queryFn: PokeFetch,
+        refetchOnWindowFocus: false
+    })
+
+    return { data, isLoading }
+}
+
 export const usePokemon = (url) => {
     const PokeFetch = async () => {
         const res = await fetch(url)
@@ -72,34 +105,8 @@ export const usePokemon = (url) => {
     return { data, isLoading }
 }
 
-export const useTypePokemon = (url) => {
-    const PokeFetch = async () => {
-
-        const res = await fetch(url)
-        const data = await res.json()
-
-        const dataPokemons = await Promise.all(
-            data.pokemon.map(async (poke) => {
-                const res = await fetch(poke.pokemon.url)
-                const data = await res.json()
-
-                return {
-                    id: data.id,
-                    name: data.name,
-                    img: data.sprites.front_default,
-                    type: data.types
-                }
-            })
-        )
-
-        return { pokemon: dataPokemons }
-    }
-
-    const { data, isLoading } = useQuery({
-        queryKey: ['pokemon', url],
-        queryFn: PokeFetch,
-        refetchOnWindowFocus: false
-    })
-
-    return { data, isLoading }
-}
+// export const UseTypes = () => {
+//     const PokeFetch = async () => {
+//         const res = await fetch('')
+//     }
+// }
