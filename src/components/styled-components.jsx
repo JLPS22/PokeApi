@@ -43,10 +43,10 @@ export const DivTittle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Press Start 2P';
     line-height: 1.5;
     color: var(--text-color);
     gap: 15px;
+    letter-spacing: 10px;
 `
 export const DivSearch = styled.div`
     display: flex;
