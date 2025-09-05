@@ -97,10 +97,10 @@ Please change the parent <Route path="${w}"> to <Route path="${w==="/"?"*":`${w}
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Press Start 2P';
     line-height: 1.5;
     color: var(--text-color);
     gap: 15px;
+    letter-spacing: 10px;
 `,$m=ne.div`
     display: flex;
     align-items: center;
