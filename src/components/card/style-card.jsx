@@ -1,4 +1,5 @@
 import { styled } from "styled-components"
+import { Link } from "react-router-dom"
 
 export const DivContainer = styled.div`
     color: var(--text-color);
@@ -56,5 +57,23 @@ export const DivCard = styled.div`
         margin-bottom: 1px;
         margin-left: 10px;
         padding: 5px 0px 0px 0px;
+    }
+`
+export const LinkStyle = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    padding: 15px;
+    margin-left: 5px;
+    font-size: 18px;
+    border: 1px solid #646cff;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    color: #646cff;
+    transition: 0.5s ease;
+
+    &:hover {
+        background-color: #646cff;
+        color: #fff;
+        cursor: pointer;
     }
 `

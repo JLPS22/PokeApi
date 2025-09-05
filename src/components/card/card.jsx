@@ -1,7 +1,7 @@
 import { usePokemon } from "../pokemon/pokemon"
 import { useParams } from "react-router-dom"
-import { H1Load, LinkStyle, StyleType } from "../styled-components"
-import { DivCard, DivContainer } from "./style-card"
+import { H1Load, StyleType } from "../styled-components"
+import { DivCard, DivContainer, LinkStyle } from "./style-card"
 
 export const Card = () => {
     const { id } = useParams()

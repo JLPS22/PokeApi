@@ -24,12 +24,12 @@ export const CardList = () => {
     return (
         <>
             <DivTittle>
-                <h1>POKE LIST</h1>
+                <h1>POKÉ LIST</h1>
             </DivTittle>
     
             <DivSearch>
                 <select id="type" value={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="">-- Selecione --</option>
+                    <option value="">-- Select --</option>
                     <option value="normal">Normal ⚪</option>
                     <option value="fighting">Fighting 🥊</option>
                     <option value="flying">Flying ☁️</option>

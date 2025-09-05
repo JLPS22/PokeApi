@@ -17,7 +17,7 @@ export const CardListType = () => {
         return (
             <>
                 <DivTittle>
-                    <h1>POKE LIST</h1>
+                    <h1>POKÉ LIST</h1>
                 </DivTittle>
 
                 <DivSearch>
